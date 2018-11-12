@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "source": "build",
+    "predeploy": ["yarn build:server"]
+  },
+  "hosting": {
+    "public": "dist",
+    "predeploy": ["yarn build:client"],
+    "rewrites": [{ "source": "/", "function": "app" }]
+  }
+}

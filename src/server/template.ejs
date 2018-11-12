@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>probable-engine - modern something something utility library</title>
+
+    <% if (typeof initialState !== 'undefined') { %>
+      <script>
+        window.__initialState = JSON.parse('<%= initialState %>')
+      </script>
+    <% } %>
+  </head>
+  <body>
+    <div id="root">
+      <% if (typeof body !== 'undefined') { %>
+        <%- body %>
+      <% } %>
+    </div>
+
+    <% if (typeof entry !== 'undefined') { %>
+      <script src="<%= entry %>"></script>
+    <% } %>
+  </body>
+</html>
