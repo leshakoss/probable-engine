@@ -15,6 +15,7 @@ module.exports = getConfig({
   externals: [nodeExternals()],
 
   rules: [
+    // Load ejs file as a template function
     {
       test: /\.ejs?$/,
       use: [{ loader: 'ejs-webpack-loader' }]

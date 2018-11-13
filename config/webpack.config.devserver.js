@@ -13,7 +13,8 @@ module.exports = getConfig({
 
   devServer: {
     port: 1337,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
 
   plugins: [

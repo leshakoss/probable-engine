@@ -57,7 +57,7 @@ rules:
   no-implicit-dependencies:
     - true
     -
-      - app
+      - ui
       - client
       - server
 
