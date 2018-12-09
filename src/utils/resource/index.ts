@@ -63,7 +63,7 @@ export function useResource<TContent>({
     [url]
   )
 
-  const updateContent = useCallback(
+  const updateContent: ResourceUpdater<TContent> = useCallback(
     callback =>
       update(({ content, ...currentResource }) => ({
         ...currentResource,
