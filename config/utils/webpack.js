@@ -6,6 +6,43 @@ function getPath(filename) {
 }
 
 function getConfig({ tsConfig, rules = [], ...rest }) {
+  const lintLoaders = [
+    {
+      loader: 'tslint-loader',
+      options: {
+        configFile: getPath('config/tslint.yaml')
+      }
+    }
+  ]
+
+  const tsLoaders = [
+    {
+      loader: 'ts-loader',
+      options: {
+        context: process.cwd(),
+        configFile: tsConfig
+      }
+    }
+  ]
+
+  const cssLoaders = ['style-loader', 'css-loader', 'postcss-loader']
+
+  const decssLoaders = [
+    'style-loader',
+    'decss-loader/react',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        importLoaders: 1,
+        localIdentName: '[local]-[hash:base64:5]'
+      }
+    },
+    'postcss-loader'
+  ]
+
+  const fileLoaders = ['file-loader']
+
   return {
     mode: process.env.NODE_ENV || 'production',
     devtool: 'inline-source-map',
@@ -13,16 +50,31 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
       rules: [
         {
           test: /\.tsx?$/,
-          use: [
-            {
-              loader: 'ts-loader',
-              options: {
-                context: process.cwd(),
-                configFile: tsConfig
-              }
-            }
-          ],
+          enforce: 'pre',
+          exclude: /node_modules/,
+          use: lintLoaders
+        },
+
+        {
+          test: /\.tsx?$/,
+          use: tsLoaders,
           exclude: /node_modules/
+        },
+
+        {
+          test: /\.css$/,
+          oneOf: [
+            {
+              resourceQuery: /raw/, // foobar.css?raw
+              use: cssLoaders
+            },
+            { use: decssLoaders }
+          ]
+        },
+
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          use: fileLoaders
         },
         ...rules
       ]

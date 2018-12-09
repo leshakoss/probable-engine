@@ -5,15 +5,19 @@ import ReactDOMServer from 'react-dom/server'
 import UI from 'ui'
 import template from 'server/template.ejs'
 import { StaticRouter, StaticRouterContext } from 'react-router'
+import { State } from 'utils/state'
 
 const server = new Koa()
 
 server.use(async context => {
   const routerContext: StaticRouterContext = {}
+  const state = {}
   const body = ReactDOMServer.renderToString(
-    <StaticRouter location={context.url} context={routerContext}>
-      <UI />
-    </StaticRouter>
+    <State.Provider value={state}>
+      <StaticRouter location={context.url} context={routerContext}>
+        <UI />
+      </StaticRouter>
+    </State.Provider>
   )
 
   if (routerContext.url) {
@@ -21,7 +25,7 @@ server.use(async context => {
     context.redirect(routerContext.url)
   } else {
     context.body = template({
-      initialState: '{}',
+      initialState: JSON.stringify(state),
       body,
       entry: '/static/script.js'
     })

@@ -1,0 +1,25 @@
+.CTA {
+  margin-top: 30px;
+  display: block;
+  background: #8c1b54;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 15px;
+}
+
+.List {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.Item {
+  height: 7rem;
+}
+
+.Item img {
+  height: 100%;
+}
