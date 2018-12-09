@@ -10,7 +10,8 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
     {
       loader: 'tslint-loader',
       options: {
-        configFile: getPath('config/tslint.yaml')
+        configFile: getPath('config/tslint.yaml'),
+        typeCheck: true
       }
     }
   ]

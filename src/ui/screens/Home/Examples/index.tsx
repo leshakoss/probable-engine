@@ -3,6 +3,7 @@ import Code from 'ui/components/Code'
 import HomeBlock from 'ui/components/HomeBlock'
 // TODO: import { trackAction } from 'app/acts/tracking_acts'
 // import classnames from 'classnames'
+import { useEntity } from 'utils/entity'
 
 import {
   Container,

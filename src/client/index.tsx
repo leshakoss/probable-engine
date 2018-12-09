@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { loop } from 'enso'
 import { State } from 'utils/state'
 
+const root = document.getElementById('root')
+
 const render = state =>
   ReactDOM.hydrate(
     <State.Provider value={state}>
@@ -12,7 +14,7 @@ const render = state =>
         <UI />
       </BrowserRouter>
     </State.Provider>,
-    document.getElementById('root')
+    root
   )
 
 loop(window.__initialState || {}, render)
