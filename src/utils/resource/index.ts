@@ -2,8 +2,33 @@ import { useEffect, useCallback } from 'react'
 import { getJSON } from 'utils/request'
 import { useEntity } from 'utils/entity'
 
-export const useResource = ({ url, callback: contentCallback }) => {
-  const [resource, update] = useEntity({
+export type ResourceUpdater<TContent> = (
+  callback: (currentContent: TContent) => TContent
+) => void
+
+interface Resource<TContent> {
+  initializing: boolean
+  loading: boolean
+  content?: TContent
+  error?: object
+}
+
+export interface UseResourceParams<TContent> {
+  url: string
+  callback: (response: any) => TContent
+}
+
+export type UseResourceReturnType<TContent> = [
+  TContent,
+  Resource<TContent>,
+  ResourceUpdater<TContent>
+]
+
+export function useResource<TContent>({
+  url,
+  callback: contentCallback
+}: UseResourceParams<TContent>): UseResourceReturnType<TContent> {
+  const [resource, update] = useEntity<Resource<TContent>>({
     path: ['resource', url],
     initialValue: { initializing: true, loading: true, content: undefined }
   })

@@ -11,7 +11,7 @@ interface BuiltInFetchOptions extends RequestOptions {
   body?: string
 }
 
-export function request(url, options: RequestOptions = {}) {
+export function request(url: string, options: RequestOptions = {}) {
   const { method = 'GET', data, headers = {} } = options
   const _headers = Object.assign({}, headers)
 
@@ -46,7 +46,7 @@ export function request(url, options: RequestOptions = {}) {
   })
 }
 
-export function requestJSON(url, options: RequestOptions = {}) {
+export function requestJSON(url: string, options: RequestOptions = {}) {
   const headers = Object.assign({}, options.headers || {}, {
     Accept: 'application/json'
   })
@@ -56,6 +56,6 @@ export function requestJSON(url, options: RequestOptions = {}) {
   ).then(resp => resp.json())
 }
 
-export function getJSON(url, options: RequestOptions = {}) {
+export function getJSON(url: string, options: RequestOptions = {}) {
   return requestJSON(url, Object.assign({}, options, { method: 'GET' }))
 }

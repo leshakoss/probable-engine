@@ -7,7 +7,7 @@ import { State } from 'utils/state'
 
 const root = document.getElementById('root')
 
-const render = state =>
+const render = (state: any) =>
   ReactDOM.hydrate(
     <State.Provider value={state}>
       <BrowserRouter>
