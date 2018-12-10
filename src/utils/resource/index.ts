@@ -6,7 +6,7 @@ export type ResourceUpdater<TContent> = (
   callback: (currentContent: TContent) => TContent
 ) => void
 
-interface Resource<TContent> {
+export interface Resource<TContent> {
   initializing: boolean
   loading: boolean
   content?: TContent
