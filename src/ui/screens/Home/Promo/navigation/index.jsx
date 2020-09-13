@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact'
 import githubPath from './img/github.svg'
 import twitterPath from './img/twitter.svg'
 import gitterPath from './img/gitter.svg'

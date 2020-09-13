@@ -1,5 +1,5 @@
-import React from 'react'
-import HomeBlock, { HomeBlockText } from 'ui/components/HomeBlock'
+import { h } from 'preact'
+import { HomeBlock, HomeText } from 'ui/components/Home'
 import { CTA, List, Item } from './style.css'
 import codePilotLogo from './img/codepilot.svg'
 
@@ -27,10 +27,10 @@ const Sponsorship = () => (
       ))}
     </List>
 
-    <HomeBlockText>
+    <HomeText>
       Want to become a project sponsor, add your (company) name to the hall of
       fame and support the developers?
-    </HomeBlockText>
+    </HomeText>
 
     <CTA
       tag="a"

@@ -1,6 +1,5 @@
-import React from 'react'
-
-import HomeBlock from 'ui/components/HomeBlock'
+import { h } from 'preact'
+import { HomeBlock } from 'ui/components/Home'
 import { Container, Row } from './style.css'
 
 const Footer = () => (

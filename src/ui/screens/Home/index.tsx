@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact'
 
 import Promo from './Promo'
 import Examples from './Examples'

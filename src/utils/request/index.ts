@@ -11,7 +11,7 @@ interface BuiltInFetchOptions extends RequestOptions {
   body?: string
 }
 
-export function request(url: string, options: RequestOptions = {}) {
+export async function request(url: string, options: RequestOptions = {}) {
   const { method = 'GET', data, headers = {} } = options
   const _headers = Object.assign({}, headers)
 
@@ -27,26 +27,26 @@ export function request(url: string, options: RequestOptions = {}) {
     }
   }
 
-  return builtinFetch(url, {
+  const response = await builtinFetch(url, {
     ...fetchOptions,
     method,
     headers: new Headers(_headers)
-  }).then(resp => {
-    const { status } = resp
-
-    if (status === 500) {
-      // TODO: Process 500 when it will be required.
-    }
-
-    if (status >= 400) {
-      // TODO: Process 4xx when it will be required.
-    }
-
-    return resp
   })
+
+  const { status } = response
+
+  if (status === 500) {
+    // TODO: Process 500 when it will be required.
+  }
+
+  if (status >= 400) {
+    // TODO: Process 4xx when it will be required.
+  }
+
+  return response
 }
 
-export function requestJSON(url: string, options: RequestOptions = {}) {
+export async function requestJSON(url: string, options: RequestOptions = {}) {
   const headers = Object.assign({}, options.headers || {}, {
     Accept: 'application/json'
   })

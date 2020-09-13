@@ -5,6 +5,8 @@
     "outDir": "lib",
     "sourceMap": true,
     "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "skipLibCheck": true,
     "baseUrl": "./src",
     "esModuleInterop": true,

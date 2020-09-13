@@ -1,8 +1,9 @@
-import React from 'react'
-import HomeBlock, {
-  HomeBlockAction,
-  HomeBlockLink
-} from 'ui/components/HomeBlock'
+import { h, Fragment } from 'preact'
+import {
+  HomeBlock,
+  HomeExternalAction,
+  HomeExternalLink
+} from 'ui/components/Home'
 
 import {
   List,
@@ -44,7 +45,9 @@ const testimonials = [
     title: (
       <>
         , author of{' '}
-        <HomeBlockLink to="https://vuikit.js.org/">Vuikit</HomeBlockLink>
+        <HomeExternalLink href="https://vuikit.js.org/">
+          Vuikit
+        </HomeExternalLink>
       </>
     ),
     url: 'https://github.com/miljan-aleksic',
@@ -63,9 +66,9 @@ export default function Testimonials() {
     <HomeBlock
       header="Testimonials"
       action={
-        <HomeBlockAction to="https://github.com/date-fns/date-fns/issues/new?labels[]=Feedback">
+        <HomeExternalAction href="https://github.com/date-fns/date-fns/issues/new?labels[]=Feedback">
           Leave Your Feedback
-        </HomeBlockAction>
+        </HomeExternalAction>
       }
     >
       <List>
@@ -81,9 +84,9 @@ export default function Testimonials() {
               </QuoteTriangle>
 
               <Name>
-                <HomeBlockLink to={testimonial.url}>
+                <HomeExternalLink href={testimonial.url}>
                   {testimonial.name}
-                </HomeBlockLink>
+                </HomeExternalLink>
                 {testimonial.title}
               </Name>
 

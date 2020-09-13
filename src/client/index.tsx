@@ -1,20 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { h, render } from 'preact'
 import UI from 'ui'
-import { BrowserRouter } from 'react-router-dom'
-import { loop } from 'enso'
-import { State } from 'utils/state'
+// import { loop } from 'enso'
+// import { State } from 'utils/state'
 
-const root = document.getElementById('root')
+// const root = document.getElementById('root')
 
-const render = (state: any) =>
-  ReactDOM.hydrate(
-    <State.Provider value={state}>
-      <BrowserRouter>
-        <UI />
-      </BrowserRouter>
-    </State.Provider>,
-    root
-  )
+// const loopFn = (state: any) =>
+//
+//
+// loop(window.__initialState || {}, loopFn)
 
-loop(window.__initialState || {}, render)
+render(<UI />, document.body)

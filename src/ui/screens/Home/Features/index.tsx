@@ -1,5 +1,5 @@
-import React from 'react'
-import HomeBlock from 'ui/components/HomeBlock'
+import { h, Fragment } from 'preact'
+import { HomeBlock } from 'ui/components/Home'
 import {
   List,
   Item,
