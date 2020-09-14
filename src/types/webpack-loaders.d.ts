@@ -7,6 +7,9 @@ declare module '*.svg' {
   export default url
 }
 
-declare module '*.css?raw' {
+declare module '*.css?global'
 
+declare module '*.graphql' {
+  const result: string
+  export default result
 }

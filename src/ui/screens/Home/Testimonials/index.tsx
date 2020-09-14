@@ -61,40 +61,38 @@ const testimonials = [
   }
 ]
 
-export default function Testimonials() {
-  return (
-    <HomeBlock
-      header="Testimonials"
-      action={
-        <HomeExternalAction href="https://github.com/date-fns/date-fns/issues/new?labels[]=Feedback">
-          Leave Your Feedback
-        </HomeExternalAction>
-      }
-    >
-      <List>
-        {testimonials.map((testimonial, index) => (
-          <Item key={index}>
-            <Avatar>
-              <AvatarImage tag="img" src={testimonial.avatar} />
-            </Avatar>
+export const Testimonials = () => (
+  <HomeBlock
+    header="Testimonials"
+    actions={
+      <HomeExternalAction href="https://github.com/date-fns/date-fns/issues/new?labels[]=Feedback">
+        Leave Your Feedback
+      </HomeExternalAction>
+    }
+  >
+    <List>
+      {testimonials.map((testimonial, index) => (
+        <Item key={index}>
+          <Avatar>
+            <AvatarImage tag="img" src={testimonial.avatar} />
+          </Avatar>
 
-            <Quote>
-              <QuoteTriangle>
-                <QuoteTriangleInner />
-              </QuoteTriangle>
+          <Quote>
+            <QuoteTriangle>
+              <QuoteTriangleInner />
+            </QuoteTriangle>
 
-              <Name>
-                <HomeExternalLink href={testimonial.url}>
-                  {testimonial.name}
-                </HomeExternalLink>
-                {testimonial.title}
-              </Name>
+            <Name>
+              <HomeExternalLink href={testimonial.url}>
+                {testimonial.name}
+              </HomeExternalLink>
+              {testimonial.title}
+            </Name>
 
-              <Text>{testimonial.text}</Text>
-            </Quote>
-          </Item>
-        ))}
-      </List>
-    </HomeBlock>
-  )
-}
+            <Text>{testimonial.text}</Text>
+          </Quote>
+        </Item>
+      ))}
+    </List>
+  </HomeBlock>
+)

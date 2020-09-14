@@ -1,5 +1,3 @@
-const builtinFetch = window.fetch
-
 interface RequestOptions {
   method?: 'GET' | 'POST'
   data?: any
@@ -12,9 +10,9 @@ interface BuiltInFetchOptions extends RequestOptions {
 }
 
 export async function request(url: string, options: RequestOptions = {}) {
-  const { method = 'GET', data, headers = {} } = options
-  const _headers = Object.assign({}, headers)
+  const { method = 'GET', data, headers: defaultHeaders = {} } = options
 
+  let headers = defaultHeaders
   let fetchOptions: BuiltInFetchOptions = { mode: 'cors' }
 
   if (data) {
@@ -23,14 +21,14 @@ export async function request(url: string, options: RequestOptions = {}) {
       // url += `?${qs.stringify(data, {arrayFormat: 'brackets'})}`
     } else {
       fetchOptions = { ...fetchOptions, body: JSON.stringify(data) }
-      Object.assign(_headers, { 'Content-Type': 'application/json' })
+      headers = { ...headers, 'Content-Type': 'application/json' }
     }
   }
 
-  const response = await builtinFetch(url, {
+  const response = await fetch(url, {
     ...fetchOptions,
     method,
-    headers: new Headers(_headers)
+    headers: new Headers(headers)
   })
 
   const { status } = response
@@ -39,7 +37,7 @@ export async function request(url: string, options: RequestOptions = {}) {
     // TODO: Process 500 when it will be required.
   }
 
-  if (status >= 400) {
+  if (status >= 400 && status < 500) {
     // TODO: Process 4xx when it will be required.
   }
 
@@ -47,15 +45,24 @@ export async function request(url: string, options: RequestOptions = {}) {
 }
 
 export async function requestJSON(url: string, options: RequestOptions = {}) {
-  const headers = Object.assign({}, options.headers || {}, {
-    Accept: 'application/json'
-  })
-  return request(
+  const response = await request(
     url,
-    Object.assign({}, Object.assign({}, options, { headers }))
-  ).then(resp => resp.json())
+    {
+      ...options,
+      headers: {
+        ...(options.headers ?? {}),
+        Accept: 'application/json'
+      }
+    }
+  )
+
+  return response.json()
 }
 
 export function getJSON(url: string, options: RequestOptions = {}) {
-  return requestJSON(url, Object.assign({}, options, { method: 'GET' }))
+  return requestJSON(url, {...options, method: 'GET'})
+}
+
+export function requestGraphQL(url: string, query: string, headers?: { [key: string]: string }) {
+  return requestJSON(url, { method: 'POST', data: { query }, headers})
 }

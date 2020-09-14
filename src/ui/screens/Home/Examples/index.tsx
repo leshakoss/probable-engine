@@ -81,7 +81,9 @@ const formattedDates = dates.map(addFiveYears).map(dateToString).map(toUpper)
   }
 ]
 
-const Examples = () => {
+const IS_PRERELEASE = false
+
+export const Examples = () => {
   const [currentExampleIndex, setExampleIndex] = useState(0)
   const currentExample = examples[currentExampleIndex]
 
@@ -114,12 +116,11 @@ const Examples = () => {
         </CodeWrapper>
       </Container>
 
-      <Warning>
+      {IS_PRERELEASE && <Warning>
         ⚠️ The provided examples are for v2 which is in pre-release right now.
         If you want to give it a try, install the latest version: npm install
         date-fns@next
-      </Warning>
+      </Warning>}
     </HomeBlock>
   )
 }
-export default Examples

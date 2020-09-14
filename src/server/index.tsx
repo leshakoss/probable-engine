@@ -1,35 +1,52 @@
+import 'isomorphic-fetch'
 import { https } from 'firebase-functions'
-import Koa from 'koa'
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import UI from 'ui'
+import { h, FunctionComponent } from 'preact'
+import render from 'preact-render-to-string'
+// import { UI } from 'ui'
 import template from 'server/template.ejs'
-import { StaticRouter, StaticRouterContext } from 'react-router'
-import { State } from 'utils/state'
+// import { RouterContext, useRouter } from 'ui/router'
+import express from 'express'
+import { requestGraphQL, getJSON } from 'utils/request'
+import sponsorsQuery from './sponsorsQuery.graphql'
+import { OPEN_COLLECTIVE_API_KEY } from 'keys'
+import cors from 'cors'
+import { cache } from './cache'
 
-const server = new Koa()
+const SPONSORS_URL = 'https://api.opencollective.com/graphql/v2'
+const CONTRIBUTORS_URL = 'https://api.github.com/repos/date-fns/date-fns/contributors?per_page=999'
 
-server.use(async context => {
-  const routerContext: StaticRouterContext = {}
-  const state = {}
-  const body = ReactDOMServer.renderToString(
-    <State.Provider value={state}>
-      <StaticRouter location={context.url} context={routerContext}>
-        <UI />
-      </StaticRouter>
-    </State.Provider>
-  )
+export const server = express()
 
-  if (routerContext.url) {
-    context.status = 301
-    context.redirect(routerContext.url)
-  } else {
-    context.body = template({
-      initialState: JSON.stringify(state),
-      body,
-      entry: '/static/script.js'
-    })
-  }
+const ServerUI: FunctionComponent<{ url: string }> = () => {
+  // const router = useRouter(url)
+
+  // return (
+  //   <RouterContext.Provider value={router}>
+  //     <UI />
+  //   </RouterContext.Provider>
+  // )
+  return <div>
+    SSR would be coming soon but I need to research what to do with style-loader
+  </div>
+}
+
+server.get('/api/sponsors', cors(), async (_req, res) => {
+  const json = await cache('FIXME', () => requestGraphQL(SPONSORS_URL, sponsorsQuery, { 'Api-Key': OPEN_COLLECTIVE_API_KEY }))
+  res.send(json)
 })
 
-export const app = https.onRequest(server.callback())
+server.get('/api/contributors', cors(), async (_req, res) => {
+  const json = await cache('REPLACE ME WITH REAL CAHCE LIBRARY', () => getJSON(CONTRIBUTORS_URL))
+  res.send(json)
+})
+
+server.get('*', (req, res) => {
+  const body = render(<ServerUI url={req.url} />)
+
+  res.send(template({
+    body,
+    entry: '/static/script.js'
+  }))
+})
+
+export const app = https.onRequest(server)

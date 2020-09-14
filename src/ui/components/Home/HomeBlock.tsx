@@ -1,16 +1,16 @@
 import { h, ComponentChild, FunctionComponent } from 'preact'
-import { Block, InnerContainer, Header, SubHeader, Content } from './style.css'
+import { Block, InnerContainer, Header, SubHeader, Content, Actions } from './style.css'
 
 interface Props {
   header?: ComponentChild
   subHeader?: ComponentChild
-  action?: ComponentChild
+  actions?: ComponentChild
 }
 
 export const HomeBlock: FunctionComponent<Props> = ({
   header,
   subHeader,
-  action,
+  actions,
   children
 }) => (
   <Block>
@@ -21,7 +21,7 @@ export const HomeBlock: FunctionComponent<Props> = ({
 
       <Content>{children}</Content>
 
-      {action}
+      <Actions>{actions}</Actions>
     </InnerContainer>
   </Block>
 )

@@ -2,7 +2,7 @@ import { h } from 'preact'
 import { HomeBlock } from 'ui/components/Home'
 import { Container, Row } from './style.css'
 
-const Footer = () => (
+export const Footer = () => (
   <HomeBlock>
     <Container>
       <Row>
@@ -26,4 +26,3 @@ const Footer = () => (
     </Container>
   </HomeBlock>
 )
-export default Footer

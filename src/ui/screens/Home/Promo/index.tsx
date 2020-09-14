@@ -13,7 +13,7 @@ import {
 import logoPath from './img/logo.svg'
 //import Link from 'app/ui/_lib/link'
 
-const Promo = () => (
+export const Promo = () => (
   <Outer>
     <Inner>
       <Logo>
@@ -43,4 +43,3 @@ const Promo = () => (
     </Inner>
   </Outer>
 )
-export default Promo

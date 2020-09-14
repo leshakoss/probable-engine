@@ -1,13 +1,15 @@
 import { h, render } from 'preact'
-import UI from 'ui'
-// import { loop } from 'enso'
-// import { State } from 'utils/state'
+import { UI } from 'ui'
+import { RouterContext, useRouter } from 'ui/router'
 
-// const root = document.getElementById('root')
+const ClientUI = () => {
+  const router = useRouter(location.href)
 
-// const loopFn = (state: any) =>
-//
-//
-// loop(window.__initialState || {}, loopFn)
+  return (
+    <RouterContext.Provider value={router}>
+      <UI />
+    </RouterContext.Provider>
+  )
+}
 
-render(<UI />, document.body)
+render(<ClientUI />, document.body)

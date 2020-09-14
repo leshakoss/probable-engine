@@ -1,7 +1,8 @@
 {
   "functions": {
     "source": "build",
-    "predeploy": ["yarn build:server"]
+    "predeploy": ["yarn build:server"],
+    "runtime": "nodejs10"
   },
   "hosting": {
     "public": "dist",

@@ -26,23 +26,27 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
     }
   ]
 
-  const cssLoaders = ['style-loader', 'css-loader', 'postcss-loader']
+  const cssLoaders = ['style-loader', 'css-loader']
 
-  const decssLoaders = [
+  const nyancssLoaders = [
     'style-loader',
-    'decss-loader/react',
+    '@nyancss/css-modules-loader/preact',
     {
       loader: 'css-loader',
-      options: {
-        modules: true,
-        importLoaders: 1,
-        localIdentName: '[local]-[hash:base64:5]'
-      }
-    },
-    'postcss-loader'
+      options: { modules: true }
+    }
   ]
 
-  const fileLoaders = ['file-loader']
+  const fileLoaders = [{
+    loader: 'file-loader',
+    options: rest.devServer ? {
+      name: 'static/[name].[ext]'
+    } : {
+      publicPath: 'static'
+    }
+  }]
+
+  const rawLoaders = ['raw-loader']
 
   return {
     mode: process.env.NODE_ENV || 'production',
@@ -66,16 +70,21 @@ function getConfig({ tsConfig, rules = [], ...rest }) {
           test: /\.css$/,
           oneOf: [
             {
-              resourceQuery: /raw/, // foobar.css?raw
+              resourceQuery: /global/, // foobar.css?global
               use: cssLoaders
             },
-            { use: decssLoaders }
+            { use: nyancssLoaders }
           ]
         },
 
         {
           test: /\.(png|jpg|gif|svg)$/,
           use: fileLoaders
+        },
+
+        {
+          test: /\.(graphql)$/,
+          use: rawLoaders
         },
         ...rules
       ]

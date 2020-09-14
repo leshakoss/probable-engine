@@ -1,25 +1,25 @@
 import { h, FunctionComponent } from 'preact'
-import { Link } from './style.css'
+import { Button } from './style.css'
 
 interface Props {
   href: string
-  title?: string
   newTab?: boolean
+  type: 'primary' | 'secondary'
 }
 
-export const HomeExternalLink: FunctionComponent<Props> = ({
+export const HomeButton: FunctionComponent<Props> = ({
   href,
-  title,
   children,
-  newTab
+  newTab,
+  type,
 }) => (
-  <Link
+  <Button
     tag="a"
     href={href} 
-    title={title}
     target={newTab ? "_blank" : undefined}
     rel={newTab ? "noopener noreferrer" : undefined}
+    type={type}
   >
     {children}
-  </Link>
+  </Button>
 )

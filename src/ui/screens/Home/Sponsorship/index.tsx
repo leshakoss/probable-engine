@@ -1,46 +1,134 @@
-import { h } from 'preact'
-import { HomeBlock, HomeText } from 'ui/components/Home'
-import { CTA, List, Item } from './style.css'
-import codePilotLogo from './img/codepilot.svg'
+import { h, Fragment, FunctionComponent } from 'preact'
+import { HomeBlock, HomeText, HomeExternalLink, HomeButton } from 'ui/components/Home'
+import {
+  Subheader,
+  List,
+  Item,
+  ItemImageContainer,
+  ItemImage,
+  ItemImagePlaceholder,
+  ItemName,
+} from './style.css'
+import { useSponsors, Sponsor } from 'utils/useSponsors'
 
-const sponsors = [
-  {
-    name: 'CodePilot.ai',
-    url: 'https://codepilot.ai/?ref=date-fns',
-    logo: codePilotLogo
-  }
-]
+export const Sponsorship = () => {
+  const [sponsors, { loading }] = useSponsors()
+  return (
+    <HomeBlock
+      header="Sponsors"
+      actions={
+        <>
+          <HomeButton
+            href="https://opencollective.com/date-fns"
+            type="primary"
+          >
+            Sponsor date-fns
+          </HomeButton>
 
-const Sponsorship = () => (
-  <HomeBlock header="Sponsors">
-    <List>
-      {sponsors.map(sponsor => (
-        <Item
-          key={sponsor.name}
-          tag="a"
-          href="https://codepilot.ai/?ref=date-fns"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={sponsor.logo} alt={sponsor.name} />
-        </Item>
-      ))}
-    </List>
-
-    <HomeText>
-      Want to become a project sponsor, add your (company) name to the hall of
-      fame and support the developers?
-    </HomeText>
-
-    <CTA
-      tag="a"
-      href="https://opencollective.com/date-fns"
-      className="sponsorship-cta"
-      target="_blank"
-      rel="noopener noreferrer"
+          <HomeButton
+            href="https://opencollective.com/date-fns#section-contributors"
+            type="secondary"
+          >
+            See all contributors
+          </HomeButton>
+        </>
+      }
     >
-      Sponsor date-fns
-    </CTA>
-  </HomeBlock>
-)
-export default Sponsorship
+      {sponsors && (
+        <>
+          <Subheader tag="h2">Silver sponsors</Subheader>
+
+          <List>
+            {sponsors.silver.map((sponsor) => (
+              <Sponsor key={sponsor.id} sponsor={sponsor} tier="silver" />
+            ))}
+          </List>
+
+          <Subheader tag="h2">Bronze sponsors</Subheader>
+
+          <List>
+            {sponsors.bronze.map((sponsor) => (
+              <Sponsor key={sponsor.id} sponsor={sponsor} tier="bronze" />
+            ))}
+          </List>
+
+          <Subheader tag="h2">Backers</Subheader>
+
+          <List>
+            {sponsors.backers.map((sponsor) => (
+              <Sponsor key={sponsor.id} sponsor={sponsor} compact />
+            ))}
+          </List>
+        </>
+      )}
+
+      {loading && <div>Loading...</div>}
+
+      <HomeText>
+        Want to become a project sponsor, add your (company) name to the hall of
+        fame and support the developers?
+      </HomeText>
+    </HomeBlock>
+    // <HomeBlock header="Sponsors">
+    //   <List>
+    //     {_sponsors.map(sponsor => (
+    //       <Item
+    //         key={sponsor.name}
+    //         tag="a"
+    //         href="https://codepilot.ai/?ref=date-fns"
+    //         target="_blank"
+    //         rel="noopener noreferrer"
+    //       >
+    //         <img src={sponsor.logo} alt={sponsor.name} />
+    //       </Item>
+    //     ))}
+    //   </List>
+
+    //   <HomeText>
+    //     Want to become a project sponsor, add your (company) name to the hall of
+    //     fame and support the developers?
+    //   </HomeText>
+
+    //   <CTA
+    //     tag="a"
+    //     href="https://opencollective.com/date-fns"
+    //     className="sponsorship-cta"
+    //     target="_blank"
+    //     rel="noopener noreferrer"
+    //   >
+    //     Sponsor date-fns
+    //   </CTA>
+    // </HomeBlock>
+  )
+}
+
+const Sponsor: FunctionComponent<{
+  tier?: 'silver' | 'bronze'
+  compact?: boolean
+  sponsor: Sponsor
+}> = ({ tier, sponsor, compact }) => {
+  return (
+    <HomeExternalLink
+      href={`${sponsor.url}?ref=date-fns`}
+      newTab={true}
+    >
+      <Item>
+        <ItemImageContainer tier={tier}>
+          {sponsor.imageUrl ? (
+            <ItemImage
+              tag="img"
+              src={sponsor.imageUrl}
+              alt={`${sponsor.name} logo`}
+            />
+          ) : (
+            <ItemImagePlaceholder  />
+          )}
+        </ItemImageContainer>
+
+        {!compact && (
+          <ItemName tag="span">{sponsor.name}</ItemName>
+        )}
+      </Item>
+    </HomeExternalLink>
+  )
+}
