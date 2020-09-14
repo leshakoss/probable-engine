@@ -10,7 +10,6 @@ import { SponsorsResponse, Sponsors, Sponsor } from './types'
 
 export { Sponsor }
 
-// Add status=cancelled,paid to see the rest of the sponsors
 const SPONSORS_URL = 'https://november-experiment.web.app/api/sponsors'
 
 export function useSponsors (): RequestHookResult<Sponsors> {

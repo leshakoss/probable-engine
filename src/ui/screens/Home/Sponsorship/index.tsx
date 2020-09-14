@@ -69,36 +69,6 @@ export const Sponsorship = () => {
         fame and support the developers?
       </HomeText>
     </HomeBlock>
-    // <HomeBlock header="Sponsors">
-    //   <List>
-    //     {_sponsors.map(sponsor => (
-    //       <Item
-    //         key={sponsor.name}
-    //         tag="a"
-    //         href="https://codepilot.ai/?ref=date-fns"
-    //         target="_blank"
-    //         rel="noopener noreferrer"
-    //       >
-    //         <img src={sponsor.logo} alt={sponsor.name} />
-    //       </Item>
-    //     ))}
-    //   </List>
-
-    //   <HomeText>
-    //     Want to become a project sponsor, add your (company) name to the hall of
-    //     fame and support the developers?
-    //   </HomeText>
-
-    //   <CTA
-    //     tag="a"
-    //     href="https://opencollective.com/date-fns"
-    //     className="sponsorship-cta"
-    //     target="_blank"
-    //     rel="noopener noreferrer"
-    //   >
-    //     Sponsor date-fns
-    //   </CTA>
-    // </HomeBlock>
   )
 }
 

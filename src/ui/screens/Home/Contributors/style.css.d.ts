@@ -1,5 +1,4 @@
 import { CSSComponent } from 'types/decss'
-import { LinkProps } from 'react-router'
 
 export const List: CSSComponent
 export const Item: CSSComponent
