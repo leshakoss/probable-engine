@@ -9,7 +9,7 @@ interface CodeProps {
   value: string
   options?: CodeMirror.EditorConfiguration
 }
-const Code: FunctionComponent<CodeProps> = ({ value, options }) => {
+export const Code: FunctionComponent<CodeProps> = ({ value, options }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [codeMirror, setCodeMirror] = useState<CodeMirror.EditorFromTextArea | null>(null)
 
@@ -39,4 +39,3 @@ const Code: FunctionComponent<CodeProps> = ({ value, options }) => {
 
   return <textarea value={value} ref={textareaRef} />
 }
-export default Code

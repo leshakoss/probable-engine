@@ -10,7 +10,7 @@ export const Contributors = () => {
     <HomeBlock
       header="Contributors"
       actions={
-        <HomeAction to={{ name: 'FIXME' }}>Contribute to date-fns</HomeAction>
+        <HomeAction to={{ name: 'docs', params: { doc: 'Contributing' } }}>Contribute to date-fns</HomeAction>
       }
     >
       {loading && <div>Loading...</div>}

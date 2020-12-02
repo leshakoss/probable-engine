@@ -14,7 +14,7 @@ select,
 textarea,
 button {
   font: 14px Helvetica, arial, freesans, clean, sans-serif;
-  color: var(--textColor);
+  color: black;
   line-height: 1.4em;
 }
 

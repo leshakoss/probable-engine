@@ -1,5 +1,5 @@
 import { h } from 'preact'
-//import Navigation from './navigation'
+import { Navigation } from './navigation'
 import {
   Outer,
   Inner,
@@ -8,10 +8,11 @@ import {
   LogoName,
   Header,
   Text,
-  GettingStarted
+  GettingStarted,
+  GettingStartedLink,
 } from './style.css'
 import logoPath from './img/logo.svg'
-//import Link from 'app/ui/_lib/link'
+import { RouterLink } from 'ui/router'
 
 export const Promo = () => (
   <Outer>
@@ -30,16 +31,12 @@ export const Promo = () => (
       </Text>
 
       <GettingStarted>
-        {/* TODO: <Link
-          name='doc'
-          params={{ docId: 'Getting-Started' }}
-          className='promo-getting_started_link'
-        >
+        <GettingStartedLink tag={RouterLink} to={{ name: 'docs', params: { doc: 'Getting-Started' } }}>
           Documentation
-        </Link> */}
+        </GettingStartedLink>
       </GettingStarted>
 
-      {/* TODO <Navigation /> */}
+      <Navigation />
     </Inner>
   </Outer>
 )

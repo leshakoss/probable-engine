@@ -1,4 +1,5 @@
-import { CSSComponent } from 'types/decss'
+import { CSSComponent, CSSPreactComponent } from 'types/decss'
+import { RouterLink } from 'ui/router'
 
 export const Outer: CSSComponent
 export const Inner: CSSComponent
@@ -8,4 +9,4 @@ export const LogoName: CSSComponent
 export const Header: CSSComponent
 export const Text: CSSComponent
 export const GettingStarted: CSSComponent
-export const GettingStartedLink: CSSComponent
+export const GettingStartedLink: CSSPreactComponent<typeof RouterLink>

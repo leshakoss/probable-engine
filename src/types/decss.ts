@@ -1,9 +1,8 @@
-import { ComponentType, JSX } from 'preact'
+import { FunctionComponent, ComponentType, JSX } from 'preact'
 
 type CSSComponentProps<TAdditionalProps = {}> = {
   tag?: keyof JSX.IntrinsicElements
-} & JSX.HTMLAttributes<any> &
-  TAdditionalProps
+} & Omit<JSX.HTMLAttributes<any>, keyof TAdditionalProps> & Omit<JSX.SVGAttributes<any>, keyof TAdditionalProps> & TAdditionalProps
 
 type CSSPreactComponentProps<
   TPreactComponent extends ComponentType<any>,
@@ -15,14 +14,14 @@ type CSSPreactComponentProps<
   : {}) &
   TAdditionalProps
 
-export type CSSComponent<TAdditionalProps = {}> = ComponentType<
+export type CSSComponent<TAdditionalProps = {}> = FunctionComponent<
   CSSComponentProps<TAdditionalProps>
 >
 
 export type CSSPreactComponent<
-  TPreactComponent extends ComponentType<any>,
+  TPreactComponent extends FunctionComponent<any>,
   TAdditionalProps = {}
-> = ComponentType<
-  | CSSComponentProps<TAdditionalProps>
-  | CSSPreactComponentProps<TPreactComponent, TAdditionalProps>
+> = FunctionComponent<
+  CSSComponentProps<TAdditionalProps> |
+  CSSPreactComponentProps<TPreactComponent, TAdditionalProps>
 >

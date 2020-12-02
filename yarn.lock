@@ -3588,6 +3588,11 @@ isomorphic-fetch@2.2.1, isomorphic-fetch@^2.2.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
+js-fns@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/js-fns/-/js-fns-2.5.1.tgz#8b3de33c5da0ba58cd02a1f2f44c49c9fee0b89f"
+  integrity sha512-407HErrcBhMeLa1gUDEHJEIGzHoEH26j79rQnQ2vjeMMYUES87ObDjkVXLMIbY7lCzXfsgh4bVJLgP5GYDazcQ==
+
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -3607,6 +3612,11 @@ json-bigint@^1.0.0:
   integrity sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==
   dependencies:
     bignumber.js "^9.0.0"
+
+json-bond@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/json-bond/-/json-bond-0.1.0.tgz#a679e6c7f2c9a7b622208da4226f5a2c6e304a34"
+  integrity sha512-oOTXdcq0PCJr6OUnzyLN2n0b5msex2KWP60/mgZpop8P6WGWQgZr9frPs4vap+cJG89Mn+hSE8dsEPwNU2B3Ig==
 
 json-parse-better-errors@^1.0.2:
   version "1.0.2"

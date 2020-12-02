@@ -1,27 +1,27 @@
-.navigation {
+.Navigation {
   margin: 0 -10px;
   font-size: 15px;
 }
 
-.navigation-link {
+.Link {
   color: white;
   margin: 0 10px;
   text-decoration: none;
   opacity: 0.5;
 }
 
-.navigation-icon {
+.Icon {
   width: 16px;
   margin-right: 5px;
   position: relative;
   top: 2px;
 }
 
-.navigation-icon.is-gitter {
+.Icon-type-spectrum {
   top: 1px;
   width: 11px;
 }
 
-.navigation-link:hover {
+.Link:hover {
   opacity: 1;
 }

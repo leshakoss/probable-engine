@@ -7,7 +7,8 @@ module.exports = getConfig({
   entry: getPath('src/client/index.tsx'),
   output: {
     filename: 'script.js',
-    path: getPath('dist/static')
+    path: getPath('dist/static'),
+    publicPath: '/'
   },
   target: 'web',
 

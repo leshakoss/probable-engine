@@ -8,7 +8,7 @@ import template from 'server/template.ejs'
 import express from 'express'
 import { requestGraphQL, getJSON } from 'utils/request'
 import sponsorsQuery from './sponsorsQuery.graphql'
-import { OPEN_COLLECTIVE_API_KEY } from 'keys'
+import { OPEN_COLLECTIVE_API_KEY } from 'FIXME_keys'
 import cors from 'cors'
 import { cache } from './cache'
 
