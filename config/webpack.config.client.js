@@ -6,7 +6,7 @@ module.exports = getConfig({
   output: {
     filename: 'script.js',
     path: getPath('dist/static'),
-    publicPath: '/'
+    publicPath: '/static/'
   },
   target: 'web'
 })
