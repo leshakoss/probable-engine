@@ -1,11 +1,13 @@
-export function text (content) {
+type FIXME = any
+
+export function text (content: FIXME) {
   return {
     type: 'text',
     content
   }
 }
 
-export function tag (tagName, attrs = {}, children = []) {
+export function tag (tagName: FIXME, attrs = {}, children: FIXME[] = []) {
   return {
     type: 'tag',
     tagName,
@@ -20,7 +22,7 @@ export function softbreak () {
   }
 }
 
-export function code (content, language) {
+export function code (content: FIXME, language: FIXME) {
   return {
     type: 'code',
     language,
@@ -28,7 +30,7 @@ export function code (content, language) {
   }
 }
 
-export function tagName (token) {
+export function tagName (token: FIXME) {
   switch (token.type) {
     case 'paragraph_open':
       return 'p'
@@ -67,7 +69,7 @@ export function tagName (token) {
   }
 }
 
-export function attrs (token) {
+export function attrs (token: FIXME) {
   switch (token.type) {
     case 'link_open':
       return { href: token.href, title: token.title }

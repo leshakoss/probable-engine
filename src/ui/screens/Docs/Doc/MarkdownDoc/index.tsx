@@ -1,11 +1,11 @@
-import React from 'react'
-import Markdown from 'app/ui/_lib/markdown'
+import { h, FunctionComponent } from 'preact'
+import { Markdown } from 'ui/components/Markdown'
 
-export default function MarkdownDoc ({ content, selectedVersionTag }) {
-  return <Markdown value={content} selectedVersionTag={selectedVersionTag} />
+interface Props {
+  markdown: string
+  selectedVersion: string
 }
 
-MarkdownDoc.propTypes = {
-  content: React.PropTypes.string,
-  selectedVersionTag: React.PropTypes.any
-}
+export const MarkdownDoc: FunctionComponent<Props> = ({ markdown, selectedVersion }) => (
+  <Markdown value={markdown} selectedVersion={selectedVersion} />
+)

@@ -1,6 +1,6 @@
 import { text, tag, softbreak, code, tagName, attrs } from './utils'
 
-export default function remarkableTree (tokens) {
+export function remarkableTree (tokens) {
   var tree = []
   var pos = 0
   while (pos < tokens.length) {

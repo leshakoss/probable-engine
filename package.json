@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@switcher/preact": "^1.1.2",
+    "@types/remarkable": "^2.0.0",
     "@typesaurus/preact": "^4.0.0",
     "body-parser": "^1.19.0",
     "codemirror": "^5.57.0",
@@ -28,6 +29,7 @@
     "json-bond": "^0.1.0",
     "preact": "^10.4.8",
     "preact-render-to-string": "^5.1.10",
+    "remarkable": "^2.0.1",
     "reset.css": "^2.0.2",
     "typesaurus": "^6.2.0"
   },

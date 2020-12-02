@@ -1,16 +1,15 @@
-import React from 'react'
-import Code from 'app/ui/_lib/code'
+import { h, FunctionComponent } from 'preact'
+import { Code } from 'ui/components/code'
 
-export default class MarkdownCode extends React.Component {
-  static propTypes = {
-    value: React.PropTypes.string,
-    language: React.PropTypes.string
+interface Props {
+  value: string
+  language?: string
+}
+
+export const MarkdownCode: FunctionComponent<Props> = ({ value, language }) => {
+  if (!language || language === 'js') {
+    language = 'javascript'
   }
 
-  render () {
-    var { language, value } = this.props
-    if (!language || language === 'js') language = 'javascript'
-
-    return <Code value={value} options={{ readOnly: true, mode: language }} />
-  }
+  return <Code value={value} options={{ readOnly: true, mode: language }} />
 }
