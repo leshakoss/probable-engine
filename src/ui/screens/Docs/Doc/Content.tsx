@@ -1,6 +1,7 @@
 import { h, FunctionComponent } from 'preact'
 import { Page } from 'db'
 import { parse } from 'json-bond'
+import { MigratedDoc } from './MigratedDoc'
 import { MarkdownDoc } from './MarkdownDoc'
 
 interface Props {
@@ -11,8 +12,12 @@ interface Props {
 export const Content: FunctionComponent<Props> = ({ page, selectedVersion }) => {
   switch (page.type) {
     case 'migrated':
-      // return <JSDoc doc={doc} selectedVersionTag={selectedVersionTag} />
-      return <div>{JSON.stringify(parse(page.doc))}</div>
+      return (
+        <MigratedDoc
+          doc={parse(page.doc)}
+          selectedVersion={selectedVersion}
+        />
+      )
     case 'markdown':
       return (
         <MarkdownDoc

@@ -1,7 +1,7 @@
 .Container {
   color: #FFE9C9;
   background: #5a0530;
-  background-image: url('./img/background.png');
+  background-image: url('./img/navBarBackground.png');
   background-size: cover;
   background-position: top center;
   position: fixed;

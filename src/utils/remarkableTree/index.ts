@@ -1,7 +1,9 @@
 import { text, tag, softbreak, code, tagName, attrs } from './utils'
 
-export function remarkableTree (tokens) {
-  var tree = []
+type FIXME = any
+
+export function remarkableTree (tokens: FIXME) {
+  var tree: FIXME = []
   var pos = 0
   while (pos < tokens.length) {
     let token = tokens[pos]
@@ -59,22 +61,22 @@ export function remarkableTree (tokens) {
   return tree
 }
 
-function getTagChildren (tokens, openingPos, closingPos) {
+function getTagChildren (tokens: FIXME, openingPos: FIXME, closingPos: FIXME) {
   return remarkableTree(tokens.slice(openingPos + 1, closingPos))
 }
 
 const OPENING_TAG_TOKEN_TYPE_PATTERN = /(.+)_open$/
 
-function isOpeningTagToken (token) {
+function isOpeningTagToken (token: FIXME) {
   return OPENING_TAG_TOKEN_TYPE_PATTERN.test(token.type)
 }
 
-function isClosingTagToken (token, openingToken) {
+function isClosingTagToken (token: FIXME, openingToken: FIXME) {
   const [, tagName] = openingToken.type.match(OPENING_TAG_TOKEN_TYPE_PATTERN)
   return token.type === `${tagName}_close` && token.level === openingToken.level
 }
 
-function getClosingPosFor (tokens, pos) {
+function getClosingPosFor (tokens: FIXME, pos: FIXME) {
   const openingToken = tokens[pos]
 
   let closingPos = pos + 1

@@ -1,18 +1,29 @@
-type MigratedDocType = {
+export type MigratedDocType = {
   names: string[]
 }
 
-type MigratedDocTypedAttribute = {
+export type MigratedDocTypedAttribute = {
   description: string
   type: MigratedDocType
 }
 
 type MigratedDocException = MigratedDocTypedAttribute
 type MigratedDocReturn = MigratedDocTypedAttribute
-type MigratedDocParam = MigratedDocTypedAttribute & {
+// TODO: test defaultvalue, variable, props
+export type MigratedDocParam = MigratedDocTypedAttribute & {
   name: string
   optional?: boolean
-  defaultValue?: string
+  defaultvalue?: string
+  variable?: boolean
+  props?: MigratedDocParam[]
+}
+
+export type MigratedDocUsage = {
+  [usageTab: string]: {
+    code: string
+    title: string
+    text?: string
+  }
 }
 
 /**
@@ -55,12 +66,6 @@ export type MigratedDocFunction = {
   title: string
   type: 'jsdoc'
   urlId: string
-  usage?: {
-    [usageTab: string]: {
-      code: string
-      title: string
-      text?: string
-    }
-  }
+  usage?: MigratedDocUsage
   usageTabs?: string[]
 }
