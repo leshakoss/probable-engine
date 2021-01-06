@@ -8,27 +8,19 @@ interface Props {
   selectedVersion: string
 }
 
-export const Content: FunctionComponent<Props> = ({ code, text, selectedVersion }) => {
-  const codeContent = (
-    <Code
-      value={code}
-      options={{
-        readOnly: true,
-        mode: 'javascript'
-      }}
-    />
-  )
-
-  if (text) {
-    return (
-      <div>
-        {codeContent}
-        <div>
-          <Markdown value={text} selectedVersion={selectedVersion} />
-        </div>
-      </div>
-    )
-  } else {
-    return codeContent
-  }
-}
+export const Content: FunctionComponent<Props> = ({ code, text, selectedVersion }) => (
+  <div>
+    <div>
+      <Code
+        value={code}
+        options={{
+          readOnly: true,
+          mode: 'javascript'
+        }}
+      />
+    </div>
+    {text && <div>
+      <Markdown value={text} selectedVersion={selectedVersion} />
+    </div>}
+  </div>
+)

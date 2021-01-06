@@ -72,7 +72,7 @@ const ParamType: FunctionComponent<{ type: MigratedDocType, variable?: boolean }
   if (variable) {
     return <span>{names.length > 1 ? `...(${types})` : `...${types}`}</span>
   } else {
-    return <span>types</span>
+    return <span>{types}</span>
   }
 }
 
